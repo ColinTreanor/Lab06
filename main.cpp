@@ -4,6 +4,42 @@
 
 const int max = 100;
 
+//function prototypes
+void readMatrix(int matrix[max][max],int matrix2[max][max], int& size, const std::string& filename);
+void printMatrix(const int matrix[max][max], int size, const std::string& name);
+void addMatrices(const int matrix1[max][max], const int matrix2[max][max], int resultMatrix[max][max], int size);
+void multiplyMatrices(const int matrix1[max][max], const int matrix2[max][max], int resultMatrix[max][max], int size);
+void subtractMatrices(const int matrix1[max][max], const int matrix2[max][max], int resultMatrix[max][max], int size);
+
+int main() {
+    int size;
+    int matrix1[max][max];
+    int matrix2[max][max];
+    int resultMatrix[max][max];
+
+    readMatrix(matrix1, matrix2, size, "matrix_input.txt");
+    std::cout << "Colin Treanor\nLab #6:\nMatrix manipulation" << std::endl;
+    std::cout << "Matrix A:" << std::endl;
+    printMatrix(matrix1, size, "A");
+
+    std::cout << "Matrix B:" << std::endl;
+    printMatrix(matrix2, size, "B");
+
+    std::cout << "Matrix Sum(A+B):" << std::endl;
+    addMatrices(matrix1, matrix2, resultMatrix, size);
+    printMatrix(resultMatrix, size, "Sum");
+
+    std::cout << "Matrix Product:" << std::endl;
+    multiplyMatrices(matrix1, matrix2, resultMatrix, size);
+    printMatrix(resultMatrix, size, "Product");
+
+    std::cout << "Matrix Difference:" << std::endl;
+    subtractMatrices(matrix1, matrix2, resultMatrix, size);
+    printMatrix(resultMatrix, size, "Difference");
+
+    return 0;
+}
+
 void readMatrix(int matrix[max][max],int matrix2[max][max], int& size, const std::string& filename){//creates the first matrix
     std::fstream file;
     file.open("matrix_input.txt");
@@ -61,34 +97,4 @@ void subtractMatrices(const int matrix1[max][max], const int matrix2[max][max], 
             resultMatrix[i][j] = matrix1[i][j] - matrix2[i][j];       
         }
     }
-}
-
-
-int main() {
-    int size;
-    int matrix1[max][max];
-    int matrix2[max][max];
-    int resultMatrix[max][max];
-
-    readMatrix(matrix1, matrix2, size, "matrix_input.txt");
-    std::cout << "Colin Treanor\nLab #6:\nMatrix manipulation" << std::endl;
-    std::cout << "Matrix A:" << std::endl;
-    printMatrix(matrix1, size, "A");
-
-    std::cout << "Matrix B:" << std::endl;
-    printMatrix(matrix2, size, "B");
-
-    std::cout << "Matrix Sum(A+B):" << std::endl;
-    addMatrices(matrix1, matrix2, resultMatrix, size);
-    printMatrix(resultMatrix, size, "Sum");
-
-    std::cout << "Matrix Product:" << std::endl;
-    multiplyMatrices(matrix1, matrix2, resultMatrix, size);
-    printMatrix(resultMatrix, size, "Product");
-
-    std::cout << "Matrix Difference:" << std::endl;
-    subtractMatrices(matrix1, matrix2, resultMatrix, size);
-    printMatrix(resultMatrix, size, "Difference");
-
-    return 0;
 }
